@@ -2,10 +2,8 @@ package metric
 
 import (
 	"go.uber.org/zap"
-//	"fmt"
 
-//	rpc "github.com/node-a-team/iov-validator_exporter/getData/rpc"
-	price "github.com/node-a-team/price_exporter/price"
+	price "github.com/HCJ222/Pricice_1E/price"
 )
 
 var (
@@ -148,11 +146,6 @@ func SetMetric(log *zap.Logger, ps *price.PriceService) {
 	metricData.ATOM.USDT.HuobiGlobal = ps.GetPrice("atom/usdt/huobiGlobal")
 	metricData.ATOM.USDT.Binance = ps.GetPrice("atom/usdt/binance")
 
-	// luna
-	metricData.LUNA.KRW.Coinone = ps.GetPrice("luna/krw/coinone")
-	metricData.LUNA.KRW.Bithumb = ps.GetPrice("luna/krw/bithumb")
-	metricData.LUNA.BTC.Upbit = ps.GetPrice("luna/btc/upbit")
-
 	// IRIS
 	metricData.IRIS.BTC.HuobiGlobal = ps.GetPrice("iris/btc/huobiGlobal")
 	metricData.IRIS.USDT.HuobiGlobal = ps.GetPrice("iris/usdt/huobiGlobal")
@@ -161,14 +154,6 @@ func SetMetric(log *zap.Logger, ps *price.PriceService) {
 	metricData.KAVA.BTC.Binance = ps.GetPrice("kava/btc/binance")
 	metricData.KAVA.USDT.Binance = ps.GetPrice("kava/usdt/binance")
 	metricData.KAVA.KRW.Coinone = ps.GetPrice("kava/krw/coinone")
-
-	// BAND PROTOCOL
-	metricData.BAND.USDT.Binance = ps.GetPrice("band/usdt/binance")
-
-	// SOL
-        metricData.SOL.BTC.Binance = ps.GetPrice("sol/btc/binance")
-        metricData.SOL.BUSD.Binance = ps.GetPrice("sol/busd/binance")
-
 
 }
 

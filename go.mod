@@ -1,4 +1,4 @@
-module github.com/node-a-team/price_exporter
+module github.com/HCJ222/Pricice_1E
 
 go 1.13
 

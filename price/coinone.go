@@ -10,8 +10,8 @@ import (
 
 	"go.uber.org/zap"
 
-	utils "github.com/node-a-team/price_exporter/utils"
-	cfg "github.com/node-a-team/price_exporter/config"
+	utils "github.com/HCJ222/Pricice_1E/utils"
+	cfg "github.com/HCJ222/Pricice_1E/config"
 )
 
 func (ps *PriceService) Coinone(log *zap.Logger, currency string) {

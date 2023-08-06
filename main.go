@@ -8,8 +8,8 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 
-	exporter "github.com/node-a-team/price_exporter/exporter"
-	cfg "github.com/node-a-team/price_exporter/config"
+	exporter "github.com/HCJ222/Pricice_1E/exporter"
+	cfg "github.com/HCJ222/Pricice_1E/config"
 )
 
 func main() {

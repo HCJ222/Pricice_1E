@@ -4,8 +4,8 @@ import (
 	"time"
 	"go.uber.org/zap"
 
-	price "github.com/node-a-team/price_exporter/price"
-	metric "github.com/node-a-team/price_exporter/exporter/metric"
+	price "github.com/HCJ222/Pricice_1E/price"
+	metric "github.com/HCJ222/Pricice_1E/exporter/metric"
 
 	"github.com/prometheus/client_golang/prometheus"
 )
@@ -66,21 +66,12 @@ func Start(log *zap.Logger) {
 					metricData.ATOM.BTC.Binance,
 					metricData.ATOM.BTC.HuobiGlobal,
 
-					metricData.LUNA.KRW.Coinone,
-					metricData.LUNA.KRW.Bithumb,
-					metricData.LUNA.BTC.Upbit,
-
 					metricData.IRIS.USDT.HuobiGlobal,
 					metricData.IRIS.BTC.HuobiGlobal,
 
 					metricData.KAVA.USDT.Binance,
 					metricData.KAVA.BTC.Binance,
 					metricData.KAVA.KRW.Coinone,
-
-					metricData.BAND.USDT.Binance,
-
-					metricData.SOL.BUSD.Binance,
-                                        metricData.SOL.BTC.Binance,
 
 				}
 

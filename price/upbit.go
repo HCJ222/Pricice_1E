@@ -11,7 +11,7 @@ import (
 
 	"go.uber.org/zap"
 
-	cfg "github.com/node-a-team/price_exporter/config"
+	cfg "github.com/HCJ222/Pricice_1E/config"
 )
 
 func (ps *PriceService) Upbit(log *zap.Logger, paymentCurrency string, currency string) {
