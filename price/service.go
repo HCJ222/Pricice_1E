@@ -46,15 +46,19 @@ func (ps *PriceService) OnStart(log *zap.Logger) error {
 	go ps.Binance(log, "btc", "iris")
 
 	go ps.Bithumb(log, "orc")
+	go ps.Huobi(log, "usdt", "orc")
 
 	go ps.Bithumb(log, "sol")
 	go ps.Coinone(log, "sol")
 	go ps.Binance(log, "usdt", "sol")
 	go ps.Binance(log, "btc", "sol")
 
-	go ps.HuobiGlobal(log, "usdt", "cere")
+	go ps.Huobi(log, "usdt", "cere")
 
 	go ps.Bithumb(log, "eth")
+	go ps.Binance(log, "usdt", "eth")
+
+	go ps.Binance(log, "usdt", "bnb")
 
 	return nil
 }

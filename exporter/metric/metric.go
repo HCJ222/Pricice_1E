@@ -19,6 +19,7 @@ var (
 		"atom_krw_upbit",
 		"atom_usdt_binance",
 		"atom_btc_binance",
+		"atom_btc_upbit",
 
 		"kava_krw_upbit",
 		"kava_usdt_binance",
@@ -32,15 +33,19 @@ var (
 		"iris_btc_binance",
 
 		"orc_krw_bithumb",
+		"orc_usdt_huobi",
 
 		"sol_krw_bithumb",
 		"sol_krw_coinone",
 		"sol_usdt_binance",
 		"sol_btc_binance",
 
-		"cere_usdt_huobiGlobal",
+		"cere_usdt_huobi",
 
 		"eth_krw_bithumb",
+		"eth_usdt_binance",
+
+		"bnb_usdt_binance",
 	}
 )
 
@@ -112,6 +117,9 @@ type metric struct {
 		KRW struct {
 			Bithumb float64
 		}
+		USDT struct {
+			Huobi float64
+		}
 	}
 
 	SOL struct {
@@ -129,13 +137,22 @@ type metric struct {
 
 	CERE struct {
 		USDT struct {
-			HuobiGlobal float64
+			Huobi float64
 		}
 	}
 
 	ETH struct {
 		KRW struct {
 			Bithumb float64
+		}
+		USDT struct {
+			Binance float64
+		}
+	}
+
+	BNB struct {
+		USDT struct {
+			Binance float64
 		}
 	}
 }
@@ -173,6 +190,7 @@ func SetMetric(log *zap.Logger, ps *price.PriceService) {
 
 	// ORC
 	metricData.ORC.KRW.Bithumb = ps.GetPrice("orc/krw/bithumb")
+	metricData.ORC.USDT.Huobi = ps.GetPrice("orc/usdt/huobi")
 
 	// SOL
 	metricData.SOL.KRW.Bithumb = ps.GetPrice("sol/krw/bithumb")
@@ -181,10 +199,14 @@ func SetMetric(log *zap.Logger, ps *price.PriceService) {
 	metricData.SOL.BTC.Binance = ps.GetPrice("sol/btc/binance")
 
 	// CERE
-	metricData.CERE.USDT.HuobiGlobal = ps.GetPrice("cere/usdt/huobiGlobal")
+	metricData.CERE.USDT.Huobi = ps.GetPrice("cere/usdt/huobi")
 
 	// ETH
 	metricData.ETH.KRW.Bithumb = ps.GetPrice("eth/krw/bithumb")
+	metricData.ETH.USDT.Binance = ps.GetPrice("eth/usdt/binance")
+
+	// BNB
+	metricData.BNB.USDT.Binance = ps.GetPrice("bnb/usdt/binance")
 }
 
 func GetMetric() *metric {

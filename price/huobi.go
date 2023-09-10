@@ -14,7 +14,7 @@ import (
 	cfg "github.com/HCJ222/Pricice_1E/config"
 )
 
-func (ps *PriceService) HuobiGlobal(log *zap.Logger, paymentCurrency string, currency string) {
+func (ps *PriceService) Huobi(log *zap.Logger, paymentCurrency string, currency string) {
 
 	for {
 		func() {
@@ -29,11 +29,11 @@ func (ps *PriceService) HuobiGlobal(log *zap.Logger, paymentCurrency string, cur
 
 			changeCurrency := currency + paymentCurrency
 
-			resp, err := http.Get(cfg.Config.APIs.HuobiGlobal + changeCurrency)
+			resp, err := http.Get(cfg.Config.APIs.Huobi + changeCurrency)
 			// log
 			if err != nil {
 				// handle error
-				log.Fatal("Price", zap.Bool("Success", false), zap.String("err", "Fail to fetch from HuobiGlobal_"+fmt.Sprint(err)))
+				log.Fatal("Price", zap.Bool("Success", false), zap.String("err", "Fail to fetch from HuobiG_"+fmt.Sprint(err)))
 			}
 
 			defer func() {
@@ -53,9 +53,9 @@ func (ps *PriceService) HuobiGlobal(log *zap.Logger, paymentCurrency string, cur
 			price := hm.Tick.Data[0].Price
 			priceString := strconv.FormatFloat(price, 'f', -1, 64)
 
-			log.Info("Price", zap.Bool("Success", true), zap.String("err", "nil"), zap.String("HuobiGlobal_"+strings.ToUpper(currency)+" to "+strings.ToUpper(paymentCurrency), priceString))
+			log.Info("Price", zap.Bool("Success", true), zap.String("err", "nil"), zap.String("Huobi_"+strings.ToUpper(currency)+" to "+strings.ToUpper(paymentCurrency), priceString))
 
-			ps.SetPrice(currency+"/"+paymentCurrency+"/huobiGlobal", price)
+			ps.SetPrice(currency+"/"+paymentCurrency+"/huobi", price)
 		}()
 	}
 }

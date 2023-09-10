@@ -57,6 +57,7 @@ func Start(log *zap.Logger) {
 				metricData.ATOM.KRW.Upbit,
 				metricData.ATOM.USDT.Binance,
 				metricData.ATOM.BTC.Binance,
+				metricData.ATOM.BTC.Upbit,
 
 				metricData.KAVA.KRW.Upbit,
 				metricData.KAVA.USDT.Binance,
@@ -70,15 +71,19 @@ func Start(log *zap.Logger) {
 				metricData.IRIS.BTC.Binance,
 
 				metricData.ORC.KRW.Bithumb,
+				metricData.ORC.USDT.Huobi,
 
 				metricData.SOL.KRW.Bithumb,
 				metricData.SOL.KRW.Coinone,
 				metricData.SOL.USDT.Binance,
 				metricData.SOL.BTC.Binance,
 
-				metricData.CERE.USDT.HuobiGlobal,
+				metricData.CERE.USDT.Huobi,
 
 				metricData.ETH.KRW.Bithumb,
+				metricData.ETH.USDT.Binance,
+
+				metricData.BNB.USDT.Binance,
 			}
 
 			for i := 0; i < len(gaugesNamespaceList); i++ {

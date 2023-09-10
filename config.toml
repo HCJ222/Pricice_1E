@@ -9,7 +9,7 @@ dunamu = "https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD"
 binance = "https://api.binance.com/api/v3/ticker/price?symbol="
 bithumb = "https://api.bithumb.com/public/transaction_history/"
 coinone = "https://tb.coinone.co.kr/api/v1/tradehistory/recent/?market=krw&target="
-huobiGlobal = "http://api.huobi.pro/market/trade?symbol="
+huobi = "http://api.huobi.pro/market/trade?symbol="
 upbit = "https://api.upbit.com/v1/ticker?markets="
 
 
