@@ -2,8 +2,9 @@ package price
 
 import (
 	"sync"
+
 	"go.uber.org/zap"
-//	"fmt"
+	// "fmt"
 )
 
 type PriceService struct {
@@ -26,31 +27,30 @@ func (ps *PriceService) OnStart(log *zap.Logger) error {
 	go ps.Upbit(log, "krw", "btc")
 	go ps.Upbit(log, "usdt", "btc")
 	go ps.Binance(log, "usdt", "btc")
-	go ps.HuobiGlobal(log, "usdt", "btc")
 
 	go ps.Coinone(log, "atom")
 	go ps.Upbit(log, "krw", "atom")
 	go ps.Upbit(log, "btc", "atom")
 	go ps.Binance(log, "btc", "atom")
-	go ps.HuobiGlobal(log, "btc", "atom")
-	go ps.HuobiGlobal(log, "usdt", "atom")
 	go ps.Binance(log, "usdt", "atom")
 
-	go ps.Coinone(log, "luna")
-	go ps.Bithumb(log, "luna")
-	go ps.Upbit(log, "btc", "luna")
-
-	go ps.HuobiGlobal(log, "btc", "iris")
-	go ps.HuobiGlobal(log, "usdt", "iris")
-
-	go ps.Binance(log, "btc", "kava")
+	go ps.Upbit(log, "krw", "kava")
 	go ps.Binance(log, "usdt", "kava")
-	go ps.Coinone(log, "kava")
+	go ps.Binance(log, "btc", "kava")
 
-	go ps.Binance(log, "usdt", "band")
+	go ps.Bithumb(log, "ctk")
+	go ps.Binance(log, "usdt", "ctk")
+	go ps.Binance(log, "btc", "ctk")
 
+	go ps.Binance(log, "usdt", "iris")
+	go ps.Binance(log, "btc", "iris")
+
+	go ps.Bithumb(log, "orc")
+
+	go ps.Bithumb(log, "sol")
+	go ps.Coinone(log, "sol")
+	go ps.Binance(log, "usdt", "sol")
 	go ps.Binance(log, "btc", "sol")
-        go ps.Binance(log, "busd", "sol")
 
 	return nil
 }
