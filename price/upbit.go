@@ -1,13 +1,13 @@
 package price
 
 import (
-	"fmt"
-	"io/ioutil"
-	"net/http"
-	"time"
 	"encoding/json"
-	"strings"
+	"fmt"
+	"io"
+	"net/http"
 	"strconv"
+	"strings"
+	"time"
 
 	"go.uber.org/zap"
 
@@ -16,48 +16,46 @@ import (
 
 func (ps *PriceService) Upbit(log *zap.Logger, paymentCurrency string, currency string) {
 
-
-        for {
-                func() {
-
-                        defer func() {
-                                if r := recover(); r != nil {
-                                        // log
-                                }
-
-                              time.Sleep(cfg.Config.Options.Interval * time.Second)
-                        }()
-
-
-                        changeCurrency := strings.ToUpper(paymentCurrency) +"-" +strings.ToUpper(currency)
-
-                        resp, err := http.Get(cfg.Config.APIs.Upbit +changeCurrency)
-			// log
-                        if err != nil {
-                                // handle error
-                                log.Fatal("Price", zap.Bool("Success", false), zap.String("err", "Fail to fetch from Upbit_" +fmt.Sprint(err)))
-                        }
+	for {
+		func() {
 
 			defer func() {
-                                resp.Body.Close()
-                        }()
+				if r := recover(); r != nil {
+					// log
+				}
 
-                        body, err := ioutil.ReadAll(resp.Body)
+				time.Sleep(cfg.Config.Options.Interval * time.Second)
+			}()
+
+			changeCurrency := strings.ToUpper(paymentCurrency) + "-" + strings.ToUpper(currency)
+
+			resp, err := http.Get(cfg.Config.APIs.Upbit + changeCurrency)
 			// log
-                        if err != nil {
-                                // handle error
-                                log.Fatal("Price", zap.Bool("Success", false), zap.String("err", "Fail to read body from Upbit_" +fmt.Sprint(err)))
-                        }
+			if err != nil {
+				// handle error
+				log.Fatal("Price", zap.Bool("Success", false), zap.String("err", "Fail to fetch from Upbit_"+fmt.Sprint(err)))
+			}
 
-                        th := []upbitMarket{}
-                        json.Unmarshal(body, &th)
+			defer func() {
+				resp.Body.Close()
+			}()
 
-                        price := th[0].TradePrice
+			body, err := io.ReadAll(resp.Body)
+			// log
+			if err != nil {
+				// handle error
+				log.Fatal("Price", zap.Bool("Success", false), zap.String("err", "Fail to read body from Upbit_"+fmt.Sprint(err)))
+			}
+
+			th := []upbitMarket{}
+			json.Unmarshal(body, &th)
+
+			price := th[0].TradePrice
 			priceString := strconv.FormatFloat(price, 'f', -1, 64)
 
-			log.Info("Price", zap.Bool("Success", true), zap.String("err", "nil"), zap.String("Bithumb_" +strings.ToUpper(currency) +" to " +strings.ToUpper(paymentCurrency), priceString))
+			log.Info("Price", zap.Bool("Success", true), zap.String("err", "nil"), zap.String("Bithumb_"+strings.ToUpper(currency)+" to "+strings.ToUpper(paymentCurrency), priceString))
 
-			ps.SetPrice(currency +"/" +paymentCurrency +"/upbit", price)
-                }()
-        }
+			ps.SetPrice(currency+"/"+paymentCurrency+"/upbit", price)
+		}()
+	}
 }

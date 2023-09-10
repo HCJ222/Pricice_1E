@@ -52,3 +52,21 @@ type binancePrice struct {
 	Symbol string `json:"symbol"`
 	Price  string `json:"price"`
 }
+
+type huobiMarket struct {
+	Status string `json:"status"`
+	CH     string `json:"ch"`
+	TS     int64  `json:"ts"`
+	Tick   struct {
+		ID   int64 `json:"id"`
+		TS   int64 `json:"ts"`
+		Data []struct {
+			Amount    float64 `json:"amount"`
+			TradeId   int64   `json:"trade-id"`
+			TS        int64   `json:"ts"`
+			ID        int64   `json:"id"`
+			Price     float64 `json:"price"`
+			Direction string  `json:"direction"`
+		}
+	}
+}

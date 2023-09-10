@@ -2,15 +2,15 @@ package price
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"regexp"
 	"time"
 
 	"go.uber.org/zap"
 
-	utils "github.com/HCJ222/Pricice_1E/utils"
 	cfg "github.com/HCJ222/Pricice_1E/config"
+	utils "github.com/HCJ222/Pricice_1E/utils"
 )
 
 func (ps *PriceService) Dunamu(log *zap.Logger) {
@@ -26,20 +26,20 @@ func (ps *PriceService) Dunamu(log *zap.Logger) {
 
 			resp, err := http.Get(cfg.Config.APIs.Dunamu)
 			// log
-                        if err != nil {
-                                // handle error
-                                log.Fatal("Price", zap.Bool("Success", false), zap.String("err", "Fail to fetch from Dunamu_" +fmt.Sprint(err)))
-                        }
+			if err != nil {
+				// handle error
+				log.Fatal("Price", zap.Bool("Success", false), zap.String("err", "Fail to fetch from Dunamu_"+fmt.Sprint(err)))
+			}
 
 			defer func() {
 				resp.Body.Close()
 			}()
-			body, err := ioutil.ReadAll(resp.Body)
+			body, err := io.ReadAll(resp.Body)
 			// log
-                        if err != nil {
-                                // handle error
-                                log.Fatal("Price", zap.Bool("Success", false), zap.String("err", "Fail to read body from Dunamu_" +fmt.Sprint(err)))
-                        }
+			if err != nil {
+				// handle error
+				log.Fatal("Price", zap.Bool("Success", false), zap.String("err", "Fail to read body from Dunamu_"+fmt.Sprint(err)))
+			}
 
 			re, _ := regexp.Compile("\"basePrice\":[0-9.]+")
 			str := re.FindString(string(body))

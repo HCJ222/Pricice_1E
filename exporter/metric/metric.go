@@ -37,6 +37,10 @@ var (
 		"sol_krw_coinone",
 		"sol_usdt_binance",
 		"sol_btc_binance",
+
+		"cere_usdt_huobiGlobal",
+
+		"eth_krw_bithumb",
 	}
 )
 
@@ -122,6 +126,18 @@ type metric struct {
 			Binance float64
 		}
 	}
+
+	CERE struct {
+		USDT struct {
+			HuobiGlobal float64
+		}
+	}
+
+	ETH struct {
+		KRW struct {
+			Bithumb float64
+		}
+	}
 }
 
 func SetMetric(log *zap.Logger, ps *price.PriceService) {
@@ -164,6 +180,11 @@ func SetMetric(log *zap.Logger, ps *price.PriceService) {
 	metricData.SOL.USDT.Binance = ps.GetPrice("sol/usdt/binance")
 	metricData.SOL.BTC.Binance = ps.GetPrice("sol/btc/binance")
 
+	// CERE
+	metricData.CERE.USDT.HuobiGlobal = ps.GetPrice("cere/usdt/huobiGlobal")
+
+	// ETH
+	metricData.ETH.KRW.Bithumb = ps.GetPrice("eth/krw/bithumb")
 }
 
 func GetMetric() *metric {

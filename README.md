@@ -13,9 +13,6 @@ Prometheus exporter for cryptocurrency prices.
   - ATOM/USDT(Binance, HuobiGlobal)
   - ATOM/KRW(Coinone, Upbit)
   - ATOM/BTC(Binance, Upbit, HuobiGlobal)
-- LUNA
-  - LUNA/KRW(Coinone, Bithumb)
-  - LUNA/BTC(Upbit)
 - IRIS
   - IRIS/USDT(HuobiGlobal)
   - IRIS/BTC(HuobiGlobal)
@@ -23,8 +20,6 @@ Prometheus exporter for cryptocurrency prices.
   - KAVA/USDT(Binance)
   - KAVA/KRW(Coinone)
   - KAVA/BTC(Binance)
-- BAND
-  - BAND/USDT(Binance) 
 - SOL
   - SOL/BUSD(Binance)
   - SOL/BTC(Binance)
@@ -75,14 +70,3 @@ EOF
 
 sudo systemctl enable price_exporter.service
 sudo systemctl start price_exporter.service
-
-
-## log
-journalctl -f | grep price-exporter
-```
-
-## Examples
-- Logs
-![logs](./examples/logs.PNG)
-- Prometheus_elements
-![prometheus_elements](./examples/prometheus_elements.png)

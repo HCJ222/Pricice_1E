@@ -75,6 +75,10 @@ func Start(log *zap.Logger) {
 				metricData.SOL.KRW.Coinone,
 				metricData.SOL.USDT.Binance,
 				metricData.SOL.BTC.Binance,
+
+				metricData.CERE.USDT.HuobiGlobal,
+
+				metricData.ETH.KRW.Bithumb,
 			}
 
 			for i := 0; i < len(gaugesNamespaceList); i++ {

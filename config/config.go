@@ -21,10 +21,11 @@ type configType struct {
 	APIs struct {
 		Dunamu string `json:"dunamu"`
 
-		Binance string `json:"binance"`
-		Bithumb string `json:"bithumb"`
-		Coinone string `json:"coinone"`
-		Upbit   string `json:"upbit"`
+		Binance     string `json:"binance"`
+		Bithumb     string `json:"bithumb"`
+		Coinone     string `json:"coinone"`
+		Upbit       string `json:"upbit"`
+		HuobiGlobal string `json:"huobiGlobal"`
 	}
 
 	Options struct {

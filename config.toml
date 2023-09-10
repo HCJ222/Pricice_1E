@@ -14,5 +14,5 @@ upbit = "https://api.upbit.com/v1/ticker?markets="
 
 
 [Options]
-interval = 5
+interval = 10
 listenPort = "61988"
